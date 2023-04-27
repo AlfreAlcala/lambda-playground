@@ -1,0 +1,22 @@
+{
+    "name": "@experiment/contract-types",
+    "version": "0.0.0",
+    "private": true,
+    "license": "MIT",
+    "main": "dist/index.js",
+    "types": "src/index.ts",
+    "scripts": {
+        "build": "tsup"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "devDependencies": {
+        "tsconfig": "workspace:*",
+        "tsup": "^6.7.0",
+        "tsup-config": "workspace:*"
+    },
+    "dependencies": {
+        "zod": "^3.21.4"
+    }
+}

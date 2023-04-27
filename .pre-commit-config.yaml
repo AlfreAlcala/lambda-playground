@@ -1,0 +1,17 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+  -   id: check-yaml
+  -   id: check-json
+  -   id: trailing-whitespace
+  -   id: check-json
+  -   id: fix-byte-order-marker
+# - repo: https://github.com/pre-commit/mirrors-eslint
+#   rev: v8.38.0
+#   hooks:
+#   -   id: eslint
+- repo: https://github.com/zricethezav/gitleaks
+  rev: v8.16.2
+  hooks:
+    - id: gitleaks

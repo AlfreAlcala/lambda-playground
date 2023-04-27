@@ -1,0 +1,60 @@
+{
+  "name": "@experiment/serverless-infrastructure",
+  "version": "0.1.0",
+  "bin": {
+    "infrastructure": "bin/infrastructure.js"
+  },
+  "scripts": {
+    "build": "cdk synth && [ -z \"${CI+x}\" ] && node refresh-ci.js || true",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk-app": "ts-node --prefer-ts-exts bin/infrastructure.ts",
+    "cdk-app-local": "ts-node --prefer-ts-exts bin/cli.ts",
+    "cdk": "cdk",
+    "deploy": "cdk deploy --all --hotswap-fallback",
+    "clean": "rm -rf cdk.out/"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.1",
+    "@types/node": "18.16.0",
+    "@types/prettier": "2.7.2",
+    "aws-cdk": "2.76.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@experiment/infrastructure-shared": "workspace:^",
+    "aws-cdk-lib": "2.76.0",
+    "cdk-pipelines-github": "^0.4.40",
+    "constructs": "^10.2.5",
+    "source-map-support": "^0.5.21"
+  },
+  "peerDependencies": {
+    "@experiment-common/trigger-voice-of-customer": "workspace:*",
+    "@experiment-common/application-underwriting": "workspace:*",
+    "@experiment-common/authorize-payment": "workspace:*",
+    "@experiment-common/calculate-commission": "workspace:*",
+    "@experiment-common/calculate-taxes": "workspace:*",
+    "@experiment-common/collect-consents": "workspace:*",
+    "@experiment-common/create-portal-acc": "workspace:*",
+    "@experiment-common/create-quotes": "workspace:*",
+    "@experiment-common/filter-products": "workspace:*",
+    "@experiment-acm/get-all-available-products": "workspace:*",
+    "@experiment-mga/get-all-available-products": "workspace:*",
+    "@experiment-common/get-products": "workspace:*",
+    "@experiment-common/initiate-contract": "workspace:*",
+    "@experiment-common/issue-policy": "workspace:*",
+    "@experiment-mga/query-and-enrich-data": "workspace:*",
+    "@experiment-acm/quote-underwriting": "workspace:*",
+    "@experiment-mga/quote-underwriting": "workspace:*",
+    "@experiment-common/store-documents": "workspace:*",
+    "@experiment-common/submit-application": "workspace:*"
+  },
+  "packageManager": "pnpm@8.3.0",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8.2"
+  }
+}

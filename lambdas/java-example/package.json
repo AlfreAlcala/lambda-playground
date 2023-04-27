@@ -1,0 +1,16 @@
+{
+    "name": "@experiment/java-example",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+      "build": "./gradlew shadowJar",
+      "start": "./gradlew run",
+      "clean": "rm -rf build/"
+    },
+    "devDependencies": {
+        "@types/aws-lambda": "^8.10.114"
+    },
+    "packageManager": "pnpm@8.3.0",
+    "dependencies": {}
+  }

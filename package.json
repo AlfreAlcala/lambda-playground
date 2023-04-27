@@ -1,0 +1,23 @@
+{
+  "name": "lambda-playground",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "eslint": "^8.39.0",
+    "eslint-config-custom": "workspace:*",
+    "prettier": "^2.8.8",
+    "turbo": "^1.9.3"
+  },
+  "packageManager": "pnpm@8.3.0",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8.2"
+  }
+}

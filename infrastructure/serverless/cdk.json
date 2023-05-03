@@ -1,5 +1,5 @@
 {
-    "app": "pnpm run cdk-app-local",
+    "app": "pnpm run cdk-app",
     "watch": {
         "include": [
             "**"

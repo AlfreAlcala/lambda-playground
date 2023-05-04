@@ -20,7 +20,8 @@ export interface ContractConstructProps {
     triggerVoiceOfCustomerPath: string,
     createPortalAccountPath: string,
     quoteStepFunctionARN: string,
-    quoteRestApiId: string
+    quoteRestApiId: string,
+    testPath: string
 }
 
 export class ContractSfnConstruct extends Construct {
@@ -259,6 +260,27 @@ export class ContractSfnConstruct extends Construct {
             resultPath: sfn.JsonPath.DISCARD
         });
 
+        const testLambda = new lambda.Function(this, 'testFunction', {
+            runtime: lambda.Runtime.NODEJS_18_X,
+            handler: 'index.handler',
+            environment: {
+                Namespace: id,
+                ServiceName: "test"
+            },
+            
+            code: lambda.Code.fromAsset(props.testPath),
+            tracing: lambda.Tracing.ACTIVE,
+            architecture: lambda.Architecture.ARM_64
+        });
+		
+        const invokeTestLambda = new sfntasks.LambdaInvoke(this, 'testInvoke', {
+            lambdaFunction: testLambda,
+            payload: sfn.TaskInput.fromJsonPathAt('$'),
+            comment: "test",
+            retryOnServiceExceptions: true,
+            taskTimeout: sfn.Timeout.duration(Duration.minutes(1))
+        })
+
         const persistContract = new sfntasks.DynamoUpdateItem(this, 'Persist Contract', {
             key: {
                 contractId: sfntasks.DynamoAttributeValue.fromString(sfn.JsonPath.stringAt('$.Payload.contractId'))
@@ -327,7 +349,8 @@ export class ContractSfnConstruct extends Construct {
         })
 
 
-        invokeInitiateContractLambda.next(persistDraftContract)
+        invokeInitiateContractLambda.next(invokeTestLambda)
+        invokeTestLambda.next(persistDraftContract)
         // persistDraftContract.next(invokeQuoteStepFunction)
         // invokeQuoteStepFunction.next(passChildSFNOutput)
         persistDraftContract.next(invokeQuoteRespAPI)

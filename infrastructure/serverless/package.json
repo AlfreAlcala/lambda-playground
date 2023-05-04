@@ -50,7 +50,8 @@
     "@experiment-acm/quote-underwriting": "workspace:*",
     "@experiment-mga/quote-underwriting": "workspace:*",
     "@experiment-common/store-documents": "workspace:*",
-    "@experiment-common/submit-application": "workspace:*"
+    "@experiment-common/submit-application": "workspace:*",
+    "@experiment-common/test": "workspace:*"
   },
   "packageManager": "pnpm@8.3.0",
   "engines": {

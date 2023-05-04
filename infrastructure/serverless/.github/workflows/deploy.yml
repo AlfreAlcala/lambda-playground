@@ -404,6 +404,34 @@ jobs:
       - id: Publish
         name: Publish Assets-FileAsset20
         run: /bin/bash ./cdk.out/publish-Assets-FileAsset20-step.sh
+  Assets-FileAsset21:
+    name: Publish Assets Assets-FileAsset21
+    needs:
+      - Build-Build
+    permissions:
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    outputs:
+      asset-hash: ${{ steps.Publish.outputs.asset-hash }}
+    steps:
+      - name: Download cdk.out
+        uses: actions/download-artifact@v3
+        with:
+          name: cdk.out
+          path: cdk.out
+      - name: Install
+        run: npm install --no-save cdk-assets
+      - name: Authenticate Via OIDC Role
+        uses: aws-actions/configure-aws-credentials@v1-node16
+        with:
+          aws-region: us-west-2
+          role-duration-seconds: 1800
+          role-skip-session-tagging: true
+          role-to-assume: arn:aws:iam::284875872477:role/GitHubActionRole
+      - id: Publish
+        name: Publish Assets-FileAsset21
+        run: /bin/bash ./cdk.out/publish-Assets-FileAsset21-step.sh
   Assets-FileAsset3:
     name: Publish Assets Assets-FileAsset3
     needs:
@@ -623,6 +651,7 @@ jobs:
       - Assets-FileAsset14
       - Assets-FileAsset15
       - Assets-FileAsset16
+      - Assets-FileAsset17
     runs-on: ubuntu-latest
     steps:
       - name: Authenticate Via OIDC Role
@@ -658,12 +687,12 @@ jobs:
       id-token: write
     needs:
       - Build-Build
-      - Assets-FileAsset17
       - Assets-FileAsset18
       - Assets-FileAsset19
+      - Assets-FileAsset20
       - Assets-FileAsset3
       - Assets-FileAsset4
-      - Assets-FileAsset20
+      - Assets-FileAsset21
       - Assets-FileAsset6
       - Assets-FileAsset7
     runs-on: ubuntu-latest
@@ -691,6 +720,6 @@ jobs:
         with:
           name: BetaStage-QuoteMGA
           template: https://cdk-hnb659fds-assets-284875872477-eu-central-1.s3.eu-central-1.amazonaws.com/${{
-            needs.Assets-FileAsset17.outputs.asset-hash }}.json
+            needs.Assets-FileAsset18.outputs.asset-hash }}.json
           no-fail-on-empty-changeset: "1"
           role-arn: arn:aws:iam::284875872477:role/cdk-hnb659fds-cfn-exec-role-284875872477-eu-central-1

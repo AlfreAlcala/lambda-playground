@@ -15,6 +15,7 @@ export class ACMStack extends Stack {
         getAllAvailableProductsPath: path.join(__dirname, '..', 'node_modules', '@experiment-acm', 'get-all-available-products', 'dist'),
         calculateCommissionPath: path.join(__dirname, '..', 'node_modules', '@experiment-common', 'calculate-commission', 'dist'),
         calculateTaxesPath: path.join(__dirname, '..', 'node_modules', '@experiment-common', 'calculate-taxes', 'dist'),
+        
         hasManualPath: true
       });
 
@@ -39,7 +40,8 @@ export class ACMStack extends Stack {
         triggerVoiceOfCustomerPath: path.join(__dirname, '..', 'node_modules', '@experiment-common', 'trigger-voice-of-customer', 'dist'),
         createPortalAccountPath: path.join(__dirname, '..', 'node_modules', '@experiment-common', 'create-portal-acc', 'dist'),
         quoteStepFunctionARN: acmQuote.stateMachine.stateMachineArn,
-        quoteRestApiId: api_quote.restApiId
+        quoteRestApiId: api_quote.restApiId,
+        testPath: path.join(__dirname, '..', 'node_modules', '@experiment-common', 'test', 'dist')
       });
 
       const api_contract = new apigateway.StepFunctionsRestApi(this, 'ACMContractStepFunctionsRestApi', {

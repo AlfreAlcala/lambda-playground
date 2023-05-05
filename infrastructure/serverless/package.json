@@ -29,10 +29,13 @@
     "aws-cdk-lib": "2.76.0",
     "cdk-pipelines-github": "^0.4.40",
     "constructs": "^10.2.5",
-    "source-map-support": "^0.5.21"
+    "source-map-support": "^0.5.21",
+    "test": "^3.3.0",
+    "zod": "^3.21.4"
   },
   "peerDependencies": {
-    "@experiment-common/trigger-voice-of-customer": "workspace:*",
+    "@experiment-acm/get-all-available-products": "workspace:*",
+    "@experiment-acm/quote-underwriting": "workspace:*",
     "@experiment-common/application-underwriting": "workspace:*",
     "@experiment-common/authorize-payment": "workspace:*",
     "@experiment-common/calculate-commission": "workspace:*",
@@ -41,17 +44,16 @@
     "@experiment-common/create-portal-acc": "workspace:*",
     "@experiment-common/create-quotes": "workspace:*",
     "@experiment-common/filter-products": "workspace:*",
-    "@experiment-acm/get-all-available-products": "workspace:*",
-    "@experiment-mga/get-all-available-products": "workspace:*",
     "@experiment-common/get-products": "workspace:*",
     "@experiment-common/initiate-contract": "workspace:*",
     "@experiment-common/issue-policy": "workspace:*",
-    "@experiment-mga/query-and-enrich-data": "workspace:*",
-    "@experiment-acm/quote-underwriting": "workspace:*",
-    "@experiment-mga/quote-underwriting": "workspace:*",
     "@experiment-common/store-documents": "workspace:*",
     "@experiment-common/submit-application": "workspace:*",
-    "@experiment-common/test": "workspace:*"
+    "@experiment-common/test": "workspace:*",
+    "@experiment-common/trigger-voice-of-customer": "workspace:*",
+    "@experiment-mga/get-all-available-products": "workspace:*",
+    "@experiment-mga/query-and-enrich-data": "workspace:*",
+    "@experiment-mga/quote-underwriting": "workspace:*"
   },
   "packageManager": "pnpm@8.3.0",
   "engines": {
